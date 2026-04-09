@@ -3,9 +3,71 @@
 <head>
     <title>Certificate Verification</title>
 </head>
-<body>
-    <h1>Verify Certificate</h1>
-    <input type="text" placeholder="Enter Certificate ID">
-    <button>Verify</button>
+
+<body style="text-align:center; font-family:Arial;">
+
+    <h2>Certificate Verification</h2>
+
+    <input type="text" id="cert_id" placeholder="Certificate ID"><br><br>
+    <input type="text" id="name" placeholder="Name"><br><br>
+    <input type="text" id="course" placeholder="Course"><br><br>
+    <input type="date" id="issue_date"><br><br>
+    <input type="text" id="hash" placeholder="Hash"><br><br>
+
+    <button onclick="verify()">Verify</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        // Your database (hardcoded)
+        const certificates = [
+            {
+                cert_id: "CERT001",
+                name: "Ruchitha",
+                course: "CSE",
+                issue_date: "2024-05-20",
+                hash: "e1dde1d13bf60691d1a0127aabae7ffcb51fc84b7e5dde67392369d545b4300e"
+            },
+            {
+                cert_id: "CERT002",
+                name: "Pravalika",
+                course: "CSE",
+                issue_date: "2024-05-25",
+                hash: "1170097a7dc652c119e423d8df943f22a7068e0fd56b2cbae39d4da385f7148d"
+            },
+            {
+                cert_id: "CERT003",
+                name: "Sumedha",
+                course: "Civil",
+                issue_date: "2024-05-23",
+                hash: "2a7d8a7509fb5ab97a0b8ac0fbe10db7790871f28f21e21543aea83a487685a2"
+            }
+        ];
+
+        function verify() {
+            let id = document.getElementById("cert_id").value;
+            let name = document.getElementById("name").value;
+            let course = document.getElementById("course").value;
+            let date = document.getElementById("issue_date").value;
+            let hash = document.getElementById("hash").value;
+
+            let found = certificates.find(c =>
+                c.cert_id === id &&
+                c.name === name &&
+                c.course === course &&
+                c.issue_date === date &&
+                c.hash === hash
+            );
+
+            if (found) {
+                document.getElementById("result").innerHTML =
+                    "<span style='color:green;'>✅ Certificate Verified</span>";
+            } else {
+                document.getElementById("result").innerHTML =
+                    "<span style='color:red;'>❌ Not Verified</span>";
+            }
+        }
+    </script>
+
 </body>
 </html>
