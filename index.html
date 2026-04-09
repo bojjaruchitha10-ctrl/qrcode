@@ -19,8 +19,7 @@
     <h3 id="result"></h3>
 
     <script>
-        // Your database (hardcoded)
-        const certificates = [
+        const data = [
             {
                 cert_id: "CERT001",
                 name: "Ruchitha",
@@ -51,7 +50,7 @@
             let date = document.getElementById("issue_date").value;
             let hash = document.getElementById("hash").value;
 
-            let found = certificates.find(c =>
+            let match = data.find(c =>
                 c.cert_id === id &&
                 c.name === name &&
                 c.course === course &&
@@ -59,9 +58,9 @@
                 c.hash === hash
             );
 
-            if (found) {
+            if (match) {
                 document.getElementById("result").innerHTML =
-                    "<span style='color:green;'>✅ Certificate Verified</span>";
+                    "<span style='color:green;'>✅ Verified</span>";
             } else {
                 document.getElementById("result").innerHTML =
                     "<span style='color:red;'>❌ Not Verified</span>";
